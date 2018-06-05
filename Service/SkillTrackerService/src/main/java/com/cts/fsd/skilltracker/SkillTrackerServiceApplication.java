@@ -6,13 +6,13 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class SkillTrackerServiceApplication /*extends SpringBootServletInitializer*/ {
+public class SkillTrackerServiceApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SkillTrackerServiceApplication.class, args);
 	}
-	/*@Override
+	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(SkillTrackerServiceApplication.class);
-	}*/
+	}
 }

@@ -6,7 +6,7 @@
 	<groupId>com.cts.fsd</groupId>
 	<artifactId>SkillTrackerService</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>SkillTrackerService</name>
 	<description>Demo project for Spring Boot</description>
@@ -43,11 +43,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-		<!-- <dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
-		</dependency> -->
+		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
