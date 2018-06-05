@@ -1,0 +1,20 @@
+<div class="container">
+  <div style="text-align:left">
+    <h2> {{title}} </h2>
+  </div>
+  <div>
+    <input class="form-control" id="myInput" [(ngModel)]="searchText" type="text" placeholder="Search..">
+  </div>
+  <div class="inputTextBox">
+    <input id="skill-name" type="text" [(ngModel)]="newskill">
+    <button type="button" class="btn btn-success" (click)="add()">Add</button>
+  </div>
+  <div *ngIf="skillList?.length>0">
+    <div *ngFor="let skill of skillList | skill : searchText">
+      <div class="inputTextBox">
+        <input id="skill-name" type="text" [(ngModel)]="skill.skillName" [disabled]="skill.skillId!=editedSkill">
+        <button type="button" class="btn btn-success" (click)="edit(skill)">{{skill.skillId!=editedSkill ? 'Edit':'Update'}}</button>
+        <button type="button" class="btn btn-danger" (click)="delete(skill)">Delete</button>
+      </div>
+    </div>
+  </div>
