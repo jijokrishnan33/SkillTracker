@@ -44,6 +44,7 @@ public class AssociateServiceImpl implements AssociateService {
 					details.setLevel3(associateTable.isLevel3());
 					details.setMobile(associateTable.getMobile());
 					details.setName(associateTable.getName());
+					details.setGender(associateTable.getGender());
 					details.setPic(Base64.getEncoder().encodeToString(associateTable.getPic()));
 					details.setRemark(associateTable.getRemark());
 					details.setStatusBlue(associateTable.isStatusBlue());
@@ -51,6 +52,11 @@ public class AssociateServiceImpl implements AssociateService {
 					details.setStatusRed(associateTable.isStatusRed());
 					details.setStrength(associateTable.getStrength());
 					details.setWeakness(associateTable.getWeakness());
+					details.setAptitudeLevel(associateTable.getAptitudeLevel());
+					details.setCommunicactionLevel(associateTable.getCommunicactionLevel());
+					details.setConfidenceLevel(associateTable.getConfidenceLevel());
+					details.setLogicLevel(associateTable.getLogicLevel());
+					details.setSpokenLevel(associateTable.getSpokenLevel());
 					List<Skill> skills = new ArrayList<Skill>();
 					for (AssociateSkillsTable associateSkillTable : associateTable.getAssociateSkills()) {
 						Skill skill = new Skill();
@@ -89,6 +95,7 @@ public class AssociateServiceImpl implements AssociateService {
 				associateTable.setLevel3(associateDetails.isLevel3());
 				associateTable.setMobile(associateDetails.getMobile());
 				associateTable.setName(associateDetails.getName());
+				associateTable.setGender(associateDetails.getGender());
 				associateTable.setPic(file.getBytes());
 				associateTable.setRemark(associateDetails.getRemark());
 				associateTable.setStatusBlue(associateDetails.isStatusBlue());
@@ -96,6 +103,11 @@ public class AssociateServiceImpl implements AssociateService {
 				associateTable.setStatusRed(associateDetails.isStatusRed());
 				associateTable.setStrength(associateDetails.getStrength());
 				associateTable.setWeakness(associateDetails.getWeakness());
+				associateTable.setAptitudeLevel(associateDetails.getAptitudeLevel());
+				associateTable.setCommunicactionLevel(associateDetails.getCommunicactionLevel());
+				associateTable.setConfidenceLevel(associateDetails.getConfidenceLevel());
+				associateTable.setLogicLevel(associateDetails.getLogicLevel());
+				associateTable.setSpokenLevel(associateDetails.getSpokenLevel());
 				Set<AssociateSkillsTable> associateSkillsTableList = new HashSet<AssociateSkillsTable>();
 				for (Skill skill : associateDetails.getSkills()) {
 					SkillsTable skillTable = new SkillsTable();
@@ -133,6 +145,7 @@ public class AssociateServiceImpl implements AssociateService {
 				details.setLevel3(associateTable.isLevel3());
 				details.setMobile(associateTable.getMobile());
 				details.setName(associateTable.getName());
+				details.setGender(associateTable.getGender());
 				details.setPic(Base64.getEncoder().encodeToString(associateTable.getPic()));
 				details.setRemark(associateTable.getRemark());
 				details.setStatusBlue(associateTable.isStatusBlue());
@@ -140,6 +153,11 @@ public class AssociateServiceImpl implements AssociateService {
 				details.setStatusRed(associateTable.isStatusRed());
 				details.setStrength(associateTable.getStrength());
 				details.setWeakness(associateTable.getWeakness());
+				details.setAptitudeLevel(associateTable.getAptitudeLevel());
+				details.setCommunicactionLevel(associateTable.getCommunicactionLevel());
+				details.setConfidenceLevel(associateTable.getConfidenceLevel());
+				details.setLogicLevel(associateTable.getLogicLevel());
+				details.setSpokenLevel(associateTable.getSpokenLevel());
 				List<Skill> skills = new ArrayList<Skill>();
 				for (AssociateSkillsTable associateSkillTable : associateTable.getAssociateSkills()) {
 					Skill skill = new Skill();
@@ -170,6 +188,7 @@ public class AssociateServiceImpl implements AssociateService {
 				associateTable.setLevel3(associateDetails.isLevel3());
 				associateTable.setMobile(associateDetails.getMobile());
 				associateTable.setName(associateDetails.getName());
+				associateTable.setGender(associateDetails.getGender());
 				associateTable.setPic(associateDetails.getPic().getBytes());
 				associateTable.setRemark(associateDetails.getRemark());
 				associateTable.setStatusBlue(associateDetails.isStatusBlue());
@@ -177,6 +196,11 @@ public class AssociateServiceImpl implements AssociateService {
 				associateTable.setStatusRed(associateDetails.isStatusRed());
 				associateTable.setStrength(associateDetails.getStrength());
 				associateTable.setWeakness(associateDetails.getWeakness());
+				associateTable.setAptitudeLevel(associateDetails.getAptitudeLevel());
+				associateTable.setCommunicactionLevel(associateDetails.getCommunicactionLevel());
+				associateTable.setConfidenceLevel(associateDetails.getConfidenceLevel());
+				associateTable.setLogicLevel(associateDetails.getLogicLevel());
+				associateTable.setSpokenLevel(associateDetails.getSpokenLevel());
 				Set<AssociateSkillsTable> associateSkillsTableList = new HashSet<AssociateSkillsTable>();
 				for (Skill skill : associateDetails.getSkills()) {
 					SkillsTable skillTable = new SkillsTable();

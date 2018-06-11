@@ -8,8 +8,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
@@ -23,7 +21,6 @@ public class AssociateTable implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int associateId;
 
 	private String name;
@@ -31,6 +28,8 @@ public class AssociateTable implements Serializable {
 	private String email;
 
 	private String mobile;
+	
+	private String gender;
 
 	@Lob
 	private byte[] pic;
@@ -55,6 +54,16 @@ public class AssociateTable implements Serializable {
 	private String strength;
 
 	private String weakness;
+	
+	private int spokenLevel;
+	
+	private int communicactionLevel;
+	
+	private int logicLevel;
+	
+	private int aptitudeLevel;
+	
+	private int confidenceLevel;
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="pk.associates",orphanRemoval=true)
 	private Set<AssociateSkillsTable> associateSkills= new HashSet<AssociateSkillsTable>(0);
@@ -177,6 +186,58 @@ public class AssociateTable implements Serializable {
 
 	public void setAssociateSkills(Set<AssociateSkillsTable> associateSkills) {
 		this.associateSkills = associateSkills;
+	}
+
+	public int getSpokenLevel() {
+		return spokenLevel;
+	}
+
+	public void setSpokenLevel(int spokenLevel) {
+		this.spokenLevel = spokenLevel;
+	}
+
+	public int getCommunicactionLevel() {
+		return communicactionLevel;
+	}
+
+	public void setCommunicactionLevel(int communicactionLevel) {
+		this.communicactionLevel = communicactionLevel;
+	}
+
+	public int getLogicLevel() {
+		return logicLevel;
+	}
+
+	public void setLogicLevel(int logicLevel) {
+		this.logicLevel = logicLevel;
+	}
+
+	public int getAptitudeLevel() {
+		return aptitudeLevel;
+	}
+
+	public void setAptitudeLevel(int aptitudeLevel) {
+		this.aptitudeLevel = aptitudeLevel;
+	}
+
+	public int getConfidenceLevel() {
+		return confidenceLevel;
+	}
+
+	public void setConfidenceLevel(int confidenceLevel) {
+		this.confidenceLevel = confidenceLevel;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 }

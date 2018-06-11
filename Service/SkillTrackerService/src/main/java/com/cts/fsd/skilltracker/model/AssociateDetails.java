@@ -11,6 +11,8 @@ public class AssociateDetails {
 	private String email;
 
 	private String mobile;
+	
+	private String gender;
 
 	private String pic;
 
@@ -25,9 +27,19 @@ public class AssociateDetails {
 	private boolean level2;
 
 	private boolean level3;
-
+  
 	private String remark;
 
+	private int spokenLevel;
+	
+	private int communicactionLevel;
+	
+	private int logicLevel;
+	
+	private int aptitudeLevel;
+	
+	private int confidenceLevel;
+	
 	private String strength;
 
 	private String weakness;
@@ -152,6 +164,54 @@ public class AssociateDetails {
 
 	public void setSkills(List<Skill> skills) {
 		this.skills = skills;
+	}
+
+	public int getSpokenLevel() {
+		return spokenLevel;
+	}
+
+	public void setSpokenLevel(int spokenLevel) {
+		this.spokenLevel = spokenLevel;
+	}
+
+	public int getCommunicactionLevel() {
+		return communicactionLevel;
+	}
+
+	public void setCommunicactionLevel(int communicactionLevel) {
+		this.communicactionLevel = communicactionLevel;
+	}
+
+	public int getLogicLevel() {
+		return logicLevel;
+	}
+
+	public void setLogicLevel(int logicLevel) {
+		this.logicLevel = logicLevel;
+	}
+
+	public int getAptitudeLevel() {
+		return aptitudeLevel;
+	}
+
+	public void setAptitudeLevel(int aptitudeLevel) {
+		this.aptitudeLevel = aptitudeLevel;
+	}
+
+	public int getConfidenceLevel() {
+		return confidenceLevel;
+	}
+
+	public void setConfidenceLevel(int confidenceLevel) {
+		this.confidenceLevel = confidenceLevel;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 	
 	
