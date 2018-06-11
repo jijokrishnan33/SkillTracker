@@ -17,7 +17,7 @@ export class SkillComponent implements OnInit {
   newskill: string = '';
   skillList: Skill[];
   title = "Add Skill";
-  searchText='';
+  searchText = '';
   constructor(private route: Router, private skillService: SkillService) { }
 
   ngOnInit() {
@@ -26,7 +26,7 @@ export class SkillComponent implements OnInit {
 
   getAllSkills() {
     this.skillService.getAllSkills().subscribe(
-      skillls =>this.skillList=skillls
+      skillls => this.skillList = skillls
     );
   }
 
@@ -42,18 +42,22 @@ export class SkillComponent implements OnInit {
   }
   delete(skill: Skill) {
     this.skillService.delete(skill).subscribe(
-      response => this.getAllSkills()
+
+      response => {
+        if (response.message == "Success")
+          this.getAllSkills()
+      }
     );
   }
 
   add() {
-    if(this.newskill != '') {
-    let skill : Skill = new Skill();
-    skill.skillName=this.newskill;
-    this.skillService.save(skill).subscribe(
-      response => this.getAllSkills()
-    );
-    this.newskill = '';
+    if (this.newskill != '') {
+      let skill: Skill = new Skill();
+      skill.skillName = this.newskill;
+      this.skillService.save(skill).subscribe(
+        response => this.getAllSkills()
+      );
+      this.newskill = '';
     }
   }
 

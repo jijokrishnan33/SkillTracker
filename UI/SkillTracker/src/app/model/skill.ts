@@ -3,5 +3,6 @@ export class Skill {
     constructor(){}
     
     public skillId :number;
-    public skillName : String;
+    public skillName : string;
+    public skillLevel : number;
 }

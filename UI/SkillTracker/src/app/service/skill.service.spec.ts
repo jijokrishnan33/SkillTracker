@@ -8,7 +8,7 @@ import { Http, BaseRequestOptions, Response, ResponseOptions, RequestMethod, Req
 import { Skill } from '../model/skill';
 import { ServiceResponse } from '../model/service-response';
 
-fdescribe('SkillService', () => {
+describe('SkillService', () => {
   let subject: SkillService;
   let backend: MockBackend;
   beforeEach(() => {
@@ -41,6 +41,7 @@ fdescribe('SkillService', () => {
     let skills: Skill[] = [{
       skillId: 1,
       skillName: "HTML",
+      skillLevel:10
     }];
     backend.connections.subscribe((connection: MockConnection) => {
       expect(connection.request.url).toEqual('http://localhost:8085/skilltrackerservice/skills/getall');
@@ -65,6 +66,7 @@ fdescribe('SkillService', () => {
     let skill: Skill = {
       skillId: 12,
       skillName: "HTML",
+      skillLevel:10
     };
     backend.connections.subscribe((connection: MockConnection) => {
       expect(connection.request.url).toEqual('http://localhost:8085/skilltrackerservice/skills/save');
@@ -72,6 +74,7 @@ fdescribe('SkillService', () => {
       expect(connection.request.getBody()).toEqual(JSON.stringify({
         skillId: 12,
         skillName: "HTML",
+        skillLevel:10
       }, null, 2));
       let options = new ResponseOptions({
         body: serResponse,
@@ -118,6 +121,7 @@ fdescribe('SkillService', () => {
     let skill: Skill = {
       skillId: 12,
       skillName: "HTML",
+      skillLevel:10
     };
     backend.connections.subscribe((connection: MockConnection) => {
       expect(connection.request.url).toEqual('http://localhost:8085/skilltrackerservice/skills/delete');
@@ -125,6 +129,7 @@ fdescribe('SkillService', () => {
       expect(connection.request.getBody()).toEqual(JSON.stringify({
         skillId: 12,
         skillName: "HTML",
+        skillLevel:10
       }, null, 2));
       let options = new ResponseOptions({
         body: serResponse,

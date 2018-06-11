@@ -11,6 +11,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { EmployeeService } from './service/employee.service';
 import { SkillService } from './service/skill.service';
 import { SkillPipe } from './pipe/skill.pipe';
+import { AddEmployeeComponent } from './add-employee/add-employee.component';
+import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
+import { AssociateNamePipe } from './pipe/associate-name.pipe';
+import { AssociateIdPipe } from './pipe/associate-id.pipe';
+import { AssociateEmailPipe } from './pipe/associate-email.pipe';
+import { AssociatePhonePipe } from './pipe/associate-phone.pipe';
+import { AssociateSkillPipe } from './pipe/associate-skill.pipe';
 
 
 @NgModule({
@@ -18,7 +25,14 @@ import { SkillPipe } from './pipe/skill.pipe';
     AppComponent,
     SkillComponent,
     DashboardComponent,
-    SkillPipe
+    SkillPipe,
+    AddEmployeeComponent,
+    EditEmployeeComponent,
+    AssociateNamePipe,
+    AssociateIdPipe,
+    AssociateEmailPipe,
+    AssociatePhonePipe,
+    AssociateSkillPipe
   ],
   imports: [
     BrowserModule,
