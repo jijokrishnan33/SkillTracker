@@ -80,7 +80,7 @@ textarea {
 
 .container{
     margin:auto;
-    width: 80%;
+    width: 90%;
 }
 
 .btn-success{
@@ -209,6 +209,21 @@ label{
     padding-right: 4px;
     padding-bottom: 1px;
     padding-left: 4px;
+}
+
+.error{
+    color: red;
+}
+
+@media only screen and (max-width: 768px) {
+
+    img{
+        margin:10px 0px;
+
+    }
+    .inputRow{
+        margin-top: 10px;
+    }
 }
 
 

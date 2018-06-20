@@ -23,7 +23,8 @@ export class EditEmployeeComponent implements OnInit {
   level: string;
   gender: string;
   searchText: string;
-  maleEmployee: boolean = false;
+  maleEmployee: boolean;
+  femaleEmployee: boolean;
   newSkillList: Skill[] = [];
   skillList: Skill[];
   selectedSkill: Skill;
@@ -50,6 +51,8 @@ export class EditEmployeeComponent implements OnInit {
         this.employee = employee;
         if (this.employee.gender == "Male") {
           this.maleEmployee = true;
+        } else {
+          this.femaleEmployee = true;
         }
         this.imageUrl = "data:image/png;base64," + this.employee.pic;
         this.setSkills();
@@ -113,19 +116,31 @@ export class EditEmployeeComponent implements OnInit {
   setStatus() {
     if (this.status == "1") {
       this.employee.statusGreen = true;
+      this.employee.statusBlue = false;
+      this.employee.statusRed =false;
     } else if (this.status == "2") {
+      this.employee.statusGreen = false;
       this.employee.statusBlue = true;
+      this.employee.statusRed =false;
     } else if (this.status == "3") {
-      this.employee.statusRed = true;
+      this.employee.statusGreen = false;
+      this.employee.statusBlue = false;
+      this.employee.statusRed =true;
     }
   }
   seleLevel() {
     if (this.level == "1") {
       this.employee.level1 = true;
+      this.employee.level2 = false;
+      this.employee.level3 = false;
     } else if (this.level == "2") {
       this.employee.level2 = true;
+      this.employee.level1 = false;
+      this.employee.level3 = false;
     } else if (this.level == "3") {
       this.employee.level3 = true;
+      this.employee.level2 = false;
+      this.employee.level1 = false;
     }
   }
 

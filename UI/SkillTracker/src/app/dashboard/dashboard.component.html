@@ -2,48 +2,139 @@
   <div style="text-align:left">
     <h2> {{tittle}} </h2>
   </div>
+  <div class="row">
+    <div class="col-md-10 col1-sm-10 graph-container">
+      <ul class="valuechart" id="chart">
+        <li *ngFor="let skillSummary of skillSummarylist" [style.width]="skillSummary.skillPerc + '%'" [style.backgroundColor]="skillSummary.colour">
+          <span class="rotate">{{skillSummary.skillName}}</span>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-2 col-sm-2 summary-element-graph">
 
-  <!-- <div *ngIf="skillMap.size>0">
-    
-    <div class="row">
-        <div class="inputColumn" *ngFor="let skillSummary of skillMap.entries()">
-          <div [ngStyle]="{'background-color': 'blue','width':skillSummary[1]+'%'}">
-            <span>{{skillSummary[0]}}</span>
-          </div>
+      <div class="col-md-12 col-sm-6 col-xd-6 well summary-element">
+        <span>
+          <strong>{{percOfL3Emp}}%</strong>
+          <br>
+          <span class="summary-details">Level 3 Candidates</span>
+        </span>
+      </div>
+      <div class="col-md-12 col-sm-6 col-xd-6 well summary-element">
+        <span>
+          <strong>{{percOfL2Emp}}%</strong>
+          <br>
+          <span class="summary-details">Level 2 Candidates</span>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="row display-row">
+    <div class="col-md-6 col-sm-6 summarycolumn">
+      <div class="col-md-3 col-sm-3  summary">
+        <div class="col-md-12 col-sm-12  well summary-element">
+          <span>
+            <strong>{{totalNumberOfEmp}}</strong>
+            <br>
+            <span class="summary-details">Registered Candidates</span>
+          </span>
         </div>
       </div>
-      <div class="col-md-10 col-sm-10 col-xs-10"></div>
-    <div class="col-md-2 col-sm-2 col-xs-2"></div>
-  </div> -->
+      <div class="col-md-3 col-sm-3  summary">
+        <div class="col-md-12 col-sm-12  well summary-element ">
+          <span>
+            <strong>{{percOfFemaleEmp}}%</strong>
+            <br>
+            <span class="summary-details">Female Candidates</span>
+          </span>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-3  summary">
+        <div class="col-md-12 col-sm-12  well summary-element">
+          <span>
+            <strong>{{percOfMaleEmp}}%</strong>
+            <br>
+            <span class="summary-details">Male Candidates</span>
+          </span>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-3  summary">
+        <div class="col-md-12 col-sm-12  well summary-element">
+          <span>
+            <strong>{{percOfFreshers}}%</strong>
+            <br>
+            <span class="summary-details">Candidates Freshers</span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 summarycolumn">
+      <div class="col-md-3 col-sm-3  summary">
+        <div class="col-md-12 col-sm-12  well summary-element">
+          <span>
+            <strong>{{totalNoOfRatedEmp}}</strong>
+            <br>
+            <span class="summary-details">Candidates Rated</span>
+          </span>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-3  summary">
+        <div class="col-md-12 col-sm-12  well summary-element">
+          <span>
+            <strong>{{percOfFemaleRatedEmp}}%</strong>
+            <br>
+            <span class="summary-details">Female Candidates Rated</span>
+          </span>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-3  summary">
+        <div class="col-md-12 col-sm-12  well summary-element">
+          <span>
+            <strong>{{percOfMaleRatedEmp}}%</strong>
+            <br>
+            <span class="summary-details">Male Candidates Rated</span>
+          </span>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-3  summary">
+        <div class="col-md-12 col-sm-12  well summary-element">
+          <span>
+            <strong>{{percOfL1Emp}}%</strong>
+            <br>
+            <span class="summary-details">Level 1 Candidates</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="row display-row">
-    <div class="col-md-6 col-sm-6 col-xs-6 headers">
+    <div class="col-md-6 col-sm-6 col-xs-12 headers">
       <div class="row inner-row">
-        <div class="col-md-2 col-sm-2 col-xs-2 headers">
-          <input type="text" id="pic" placeholder="Pic" disabled>
+        <div class="col-md-2 col-sm-2 col-xs-2 hidden-xs  def-header">
+          <span>Pic</span>
         </div>
-        <div class="col-md-2 col-sm-2 col-xs-2 headers">
-          <input type="text" id="statusText" disabled placeholder="Status">
+        <div class="col-md-2 col-sm-2 col-xs-2 hidden-xs  def-header">
+          <span>Status</span>
         </div>
-        <div class="col-md-5 col-sm-2 col-xs-2 headers">
+        <div class="col-md-5 col-sm-2 col-xs-6 headers">
           <input type="text" id="nameText" [(ngModel)]="nameText" placeholder="Search By Name..">
         </div>
-        <div class="col-md-3 col-sm-3 col-xs-3 headers">
+        <div class="col-md-3 col-sm-3 col-xs-6 headers">
           <input type="text" id="idText" [(ngModel)]="idText" placeholder="Search By Id..">
         </div>
       </div>
     </div>
-    <div class="col-md-6 headers">
-      <div class="row inner-row">
-        <div class="col-md-3 col-sm-3 col-xs-3 headers">
+    <div class="col-md-6 col-xs-12 headers">
+      <div class="row inner-row secondRow">
+        <div class="col-md-3 col-sm-3 col-xs-6 headers">
           <input type="text" id="emailText" [(ngModel)]="emailText" placeholder="Search By Email..">
         </div>
-        <div class="col-md-3 col-sm-3 col-xs-3 headers">
-          <input type="text" id="mobileText"  [(ngModel)]="mobileText" placeholder="Search By Mobile..">
+        <div class="col-md-3 col-sm-3 col-xs-6 headers">
+          <input type="text" id="mobileText" [(ngModel)]="mobileText" placeholder="Search By Mobile..">
         </div>
-        <div class="col-md-3 col-sm-3 col-xs-3 headers">
+        <div class="col-md-3 col-sm-3 col-xs-6 headers secondRow2">
           <input type="text" id="strongSkillText" [(ngModel)]="strongSkillText" placeholder="Search By Strong Skills..">
         </div>
-        <div class="col-md-3 col-sm-3 col-xs-3 headers">
+        <div class="col-md-3 col-sm-3 col-xs-6 headers secondRow2">
           <button type="button" class="btn btn-success" [routerLink]="['/add-employee']">Add Employee</button>
         </div>
       </div>
@@ -51,33 +142,33 @@
   </div>
   <div *ngIf="employeeList?.length>0">
     <div class="row display-row well" *ngFor="let employee of employeeList 
-    | associateName : nameText | associateId :idText | associateEmail : emailText | associatePhone: mobileText">
-      <div class="col-md-6 col-sm-6 col-xs-6 headers">
+    | associateName : nameText | associateId :idText | associateEmail : emailText | associatePhone: mobileText | associateSkill :strongSkillText">
+      <div class="col-md-6 col-sm-6 col-xs-12 headers">
         <div class="row">
-          <div class="col-md-2 col-sm-2 col-xs-2 headers">
+          <div class="col-md-2 col-sm-2 col-xs-12 headers">
             <div class="row">
               <div class="col-sm-12">
                 <img [src]="'data:image/png;base64,'+employee.pic">
               </div>
             </div>
           </div>
-          <div class="col-md-2 col-sm-2 col-xs-2 headers">
+          <div class="col-md-2 col-sm-2 col-xs-12 headers">
             <div class="row">
               <div class="col-sm-12">
                 <div class="status-box" [ngStyle]="employee.statusGreen && {'background-color': 'green'} ||employee.statusRed && {'background-color': 'red'} ||employee.statusBlue && {'background-color': 'blue'}"></div>
               </div>
             </div>
           </div>
-          <div class="col-md-5 col-sm-2 col-xs-2 headers">
+          <div class="col-md-5 col-sm-2 col-xs-12 headers">
             <div class="row">
-              <div class="col-sm-12">
+              <div class="col-sm-12 alignCenter">
                 {{employee.name}}
               </div>
             </div>
           </div>
-          <div class="col-md-3 col-sm-3 col-xs-3 headers">
+          <div class="col-md-3 col-sm-3 col-xs-12 headers">
             <div class="row">
-              <div class="col-sm-12">
+              <div class="col-sm-12 alignCenter">
                 {{employee.associateId}}
               </div>
             </div>
@@ -86,27 +177,29 @@
       </div>
       <div class="col-md-6">
         <div class="row">
-          <div class="col-md-3 col-sm-3 col-xs-3 headers">
+          <div class="col-md-3 col-sm-3 col-xs-12 headers">
             <div class="row">
-              <div class="col-sm-12 wrap-text">
+              <div class="col-sm-12 wrap-text alignCenter">
                 {{employee.email}}
               </div>
             </div>
           </div>
-          <div class="col-md-3 col-sm-3 col-xs-3 headers">
+          <div class="col-md-3 col-sm-3 col-xs-12 headers">
             <div class="row">
-              <div class="col-sm-12">
+              <div class="col-sm-12 alignCenter">
                 {{employee.mobile}}
               </div>
             </div>
           </div>
-          <div class="col-md-3 col-sm-3 col-xs-3 headers">
-            <span>haa</span>>
+          <div class="col-md-3 col-sm-3 col-xs-12 headers">
+            <div class="col-sm-12 alignCenter strong-skills">
+              <span>{{employee.strongSkills}}</span>
+            </div>
           </div>
-          <div class="col-md-3 col-sm-3 col-xs-3 headers">
-            <button type="button" class="btn btn-success btn-row" [routerLink]="['/edit',employee.associateId]">Edit</button>
-            <button type="button" class="btn btn-danger btn-row" (click)="delete(employee)">Delete</button>
-            <button type="button" class="btn btn-default btn-row" [routerLink]="['/view',employee.associateId]">View</button>
+          <div class="col-md-3 col-sm-3 col-xs-12 headers">
+            <button type="button" class="btn btn-success btn-row editAction" [routerLink]="['/edit',employee.associateId]">Edit</button>
+            <button type="button" class="btn btn-danger btn-row editAction" (click)="delete(employee)">Delete</button>
+            <button type="button" class="btn btn-default btn-row editAction" [routerLink]="['/view',employee.associateId]">View</button>
           </div>
         </div>
       </div>

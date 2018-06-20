@@ -7,37 +7,37 @@
   <div class="row">
     <div class="col-sm-4">
       <div class="row">
-        <div class="col-sm-5">
+        <div class="col-sm-5 col-xs-5">
           <label>Name:</label>
         </div>
-        <div class="col-sm-7">
+        <div class="col-sm-7 col-xs-7">
           <input type="text" id="name" name="name" [(ngModel)]="employee.name" #name="ngModel" required [disabled]="viewOnly" [ngClass]="{ 'red': name.errors && (name.dirty || name.touched)}"
           />
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-5">
+        <div class="col-sm-5 col-xs-5">
           <label>Associate Id:</label>
         </div>
-        <div class="col-sm-7">
+        <div class="col-sm-7 col-xs-7">
           <input type="number" id="associateid" [(ngModel)]="employee.associateId" required #associateid="ngModel" [disabled]="viewOnly"
           />
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-5">
+        <div class="col-sm-5 col-xs-5">
           <label>Email:</label>
         </div>
-        <div class="col-sm-7">
+        <div class="col-sm-7 col-xs-7">
           <input type="email" id="email" [(ngModel)]="employee.email" required #mail="ngModel" [ngClass]="{ 'red': mail.errors && (mail.dirty || mail.touched)}"
             pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [disabled]="viewOnly" />
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-5">
+        <div class="col-sm-5 col-xs-5">
           <label>Mobile:</label>
         </div>
-        <div class="col-sm-7">
+        <div class="col-sm-7 col-xs-7">
           <input id="phone" type="text" [(ngModel)]="employee.mobile" required #phone="ngModel" maxlength=10 [ngClass]="{ 'red': phone.errors && (phone.dirty || phone.touched)}"
             pattern="^[0-9]{10}" [disabled]="viewOnly" />
         </div>
@@ -54,7 +54,7 @@
     </div>
     <div class="col-sm-1">
       <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12 col-xs-12">
           <label for="suceess" class="btn btn-success status-button">
             <input type="radio" id="suceess" name="availability" class="badgebox" [value]="1" [(ngModel)]="status" [checked]="employee.statusGreen"
               [disabled]="viewOnly">
@@ -63,7 +63,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12 col-xs-12">
           <label for="primary" class="btn btn-primary status-button">
             <input type="radio" id="primary" name="availability" class="badgebox" [value]="2" [(ngModel)]="status" [checked]="employee.statusBlue"
               [disabled]="viewOnly">
@@ -72,7 +72,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12 col-xs-12">
           <label for="danger" class="btn btn-danger status-button">
             <input type="radio" id="danger" name="availability" class="badgebox" [value]="3" [(ngModel)]="status" [checked]="employee.statusRed"
               [disabled]="viewOnly">
@@ -83,7 +83,7 @@
     </div>
     <div class="col-sm-1">
       <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12 col-xs-12">
           <label for="l1" class="btn btn-default status-button-range">L1
             <input type="radio" id="l1" name="range" class="badgebox" [value]="1" [(ngModel)]="level" [checked]="employee.level1" [disabled]="viewOnly">
             <span class="badge">&#10003;</span>
@@ -91,7 +91,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12 col-xs-12">
           <label for="l2" class="btn btn-default status-button-range">L2
             <input type="radio" id="l2" name="range" class="badgebox" [value]="2" [(ngModel)]="level" [checked]="employee.level2" [disabled]="viewOnly">
             <span class="badge">&#10003;</span>
@@ -99,7 +99,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12 col-xs-12">
           <label for="l3" class="btn btn-default status-button-range">L3
             <input type="radio" id="l3" name="range" class="badgebox" [value]="3" [(ngModel)]="level" [checked]="employee.level3" [disabled]="viewOnly">
             <span class="badge">&#10003;</span>
@@ -121,7 +121,7 @@
                     <span class="badge">&#10003;</span>
                   </label>
                   <label for="female" class="btn btn-info status-button-gender">Female
-                    <input type="radio" id="female" name="gender" [value]="2" [checked]="!maleEmployee" [disabled]="viewOnly" class="badgebox" [(ngModel)]="gender">
+                    <input type="radio" id="female" name="gender" [value]="2" [checked]="femaleEmployee" [disabled]="viewOnly" class="badgebox" [(ngModel)]="gender">
                     <span class="badge">&#10003;</span>
                   </label>
                 </div>
@@ -151,15 +151,15 @@
               <h4>Skills</h4>
             </span>
           </div>
-          <div class="col-sm-4" [hidden]="viewOnly">
+          <div class="col-sm-4 col-xs-12" [hidden]="viewOnly">
             <input class="skill-search" id="myInput" [(ngModel)]="searchText" type="text" placeholder="Search Skill (Auto filter)">
           </div>
-          <div class="col-sm-4" [hidden]="viewOnly">
+          <div class="col-sm-4 col-xs-9" [hidden]="viewOnly">
             <select name="newSkills" (change)="onSelect(selectedSkilID)" [(ngModel)]="selectedSkilID">
               <option *ngFor="let skill of newSkillList" value={{skill.skillId}}>{{skill.skillName}}</option>
             </select>
           </div>
-          <div class="col-sm-2" [hidden]="viewOnly">
+          <div class="col-sm-2 col-xs-3" [hidden]="viewOnly">
             <button type="button" class="btn btn-success btn-row" (click)="addSkill()">Add</button>
           </div>
         </div>
@@ -169,10 +169,10 @@
         <div class="row">
           <div class="col-sm-4" *ngFor="let skill of employee.skills | skill : searchText">
             <div class="row">
-              <div class="col-sm-3">
+              <div class="col-sm-4">
                 <label>{{skill.skillName}}</label>
               </div>
-              <div class="col-sm-9">
+              <div class="col-sm-8">
                 <input type="range" min="0" max="20" value="{{skill.skillLevel}}" class="slider" id="myRange" (input)="sliderChnage($event.target.value,skill)"
                   [disabled]="viewOnly"> {{skill.skillLevel}}
               </div>
@@ -185,30 +185,30 @@
         <div class="row">
           <div class="col-sm-4">
             <div class="row">
-              <div class="col-sm-3">
+              <div class="col-sm-4">
                 <label>Spoken</label>
               </div>
-              <div class="col-sm-9">
+              <div class="col-sm-8">
                 <input type="range" min="0" max="20" value="{{employee.spokenLevel}}" class="slider" id="myRange" [(ngModel)]="employee.spokenLevel" [disabled]="viewOnly"> {{employee.spokenLevel}}
               </div>
             </div>
           </div>
           <div class="col-sm-4">
             <div class="row">
-              <div class="col-sm-3">
+              <div class="col-sm-4">
                 <label>Communication</label>
               </div>
-              <div class="col-sm-9">
+              <div class="col-sm-8">
                 <input type="range" min="0" max="20" value="{{employee.communicactionLevel}}" [disabled]="viewOnly" class="slider" id="myRange" [(ngModel)]="employee.communicactionLevel"> {{employee.communicactionLevel}}
               </div>
             </div>
           </div>
           <div class="col-sm-4">
             <div class="row">
-              <div class="col-sm-3">
+              <div class="col-sm-4">
                 <label>Logic</label>
               </div>
-              <div class="col-sm-9">
+              <div class="col-sm-8">
                 <input type="range" min="0" max="20" value="{{employee.logicLevel}}" class="slider" [disabled]="viewOnly" id="myRange" [(ngModel)]="employee.logicLevel"> {{employee.logicLevel}}
               </div>
             </div>
@@ -217,20 +217,20 @@
         <div class="row">
           <div class="col-sm-4">
             <div class="row">
-              <div class="col-sm-3">
+              <div class="col-sm-4">
                 <label>Aptitude</label>
               </div>
-              <div class="col-sm-9">
+              <div class="col-sm-8">
                 <input type="range" min="0" max="20" value="{{employee.aptitudeLevel}}" class="slider" [disabled]="viewOnly" id="myRange" [(ngModel)]="employee.aptitudeLevel"> {{employee.aptitudeLevel}}
               </div>
             </div>
           </div>
           <div class="col-sm-4">
             <div class="row">
-              <div class="col-sm-3">
+              <div class="col-sm-4">
                 <label>Confidence</label>
               </div>
-              <div class="col-sm-9">
+              <div class="col-sm-8">
                 <input type="range" min="0" max="20" value="{{employee.confidenceLevel}}" class="slider" [disabled]="viewOnly" id="myRange" [(ngModel)]="employee.confidenceLevel"> {{employee.confidenceLevel}}
               </div>
             </div>
@@ -240,20 +240,20 @@
         <div class="row ">
           <div class="col-sm-4">
             <div class="row ">
-              <div class="col-sm-4">
+              <div class="col-sm-4 col-xs-5">
                 <label>Strenght:</label>
               </div>
-              <div class="col-sm-8">
+              <div class="col-sm-8 col-xs-7">
                 <input type="text" id="strength" name="strength" [(ngModel)]="employee.strength" [disabled]="viewOnly" />
               </div>
             </div>
           </div>
-          <div class="col-sm-4">
+          <div class="col-sm-4 ">
             <div class="row ">
-              <div class="col-sm-4">
+              <div class="col-sm-4 col-xs-5">
                 <label>Weakness:</label>
               </div>
-              <div class="col-sm-8">
+              <div class="col-sm-8 col-xs-7">
                 <input type="text" id="name" name="name" [(ngModel)]="employee.weakness" [disabled]="viewOnly" />
               </div>
             </div>

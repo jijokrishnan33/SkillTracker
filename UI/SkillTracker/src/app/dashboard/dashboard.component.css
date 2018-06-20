@@ -1,6 +1,6 @@
 .container{
     margin:auto;
-    width: 80%;
+    width: 90%;
 }
 input {
     border-color: lightseagreen;
@@ -91,4 +91,111 @@ img{
 }
 .middele{
     margin-top: 18%;
+}
+
+ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  ul {
+    display: flex;
+    flex-flow: row wrap;
+  }
+  
+  li {
+    height: 150px;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    display: flex;
+  }
+  .graph-container {
+      padding-left: 0px;
+      padding-right: 0px;
+  }
+  .summary{
+      height:65px;
+      padding-right: 4px;
+      padding-left: 0px;
+  }
+  .rotate {
+    filter:  progid:DXImageTransform.Microsoft.BasicImage(rotation=3);  /* IE6,IE7 */
+    ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)"; /* IE8 */
+    -moz-transform: rotate(-90deg);  /* FF3.5+ */
+    -o-transform: rotate(-90deg);  /* Opera 10.5 */
+    -webkit-transform: rotate(-90deg);  /* Safari 3.1+, Chrome */
+    
+    }
+  
+  .summarycolumn{
+      padding-left: 0px;
+      padding-right: 0px;
+
+  }
+
+  .summary-element{
+    height: 65px;
+    text-align: center;
+    background-color: lavender;
+  }
+
+  .summary-element-graph{
+    padding-left: 33px;
+    padding-right: 4px;
+  }
+
+  .summary-details{
+      font-size: 11px;
+  }
+  .def-header{
+    text-align: center;
+    font-weight: 700;
+}
+
+.strong-skills{
+    padding-left: 0px;
+    word-break: break-all;
+    padding-right: 1px;
+}
+
+  @media only screen and (max-width: 768px) {
+    .summary-element-graph{
+        padding-left: 0px;
+        padding-right: 0px;
+        padding-top: 10px;
+      }
+      .summary{
+          margin-bottom:20px; 
+      }
+      .inner-row{
+          padding-bottom: 20px;
+      }
+      .secondRow{
+          padding: 20px,0;
+      }
+      .secondRow2{
+          padding-top:20px; 
+      }
+      .secondRow2 button{
+          width: 100%;
+      }
+      .alignCenter{
+          text-align: center;
+          padding: 5px 0;
+      }
+      .editAction{
+        padding: 10px;
+        width: 20%;
+        margin-left: 10%;
+        margin-bottom: 20px;  
+      }
+      img{
+          width: 25%;
+          height: 25%;
+          margin-top: 10px;
+          margin-bottom: 10px;      
+      }
+
 }

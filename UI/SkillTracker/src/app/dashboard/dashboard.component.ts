@@ -3,6 +3,8 @@ import { Router } from "@angular/router";
 
 import { EmployeeService } from '../service/employee.service';
 import { AssociateDetails } from '../model/associate-details';
+import { GraphContent } from '../model/graph-content';
+import { Skill } from '../model/skill'
 
 @Component({
   selector: 'app-dashboard',
@@ -23,33 +25,37 @@ export class DashboardComponent implements OnInit {
   imgData = 'data:image/png;base64,' + this.data;
   status: string = "green";
   employeeList: AssociateDetails[];
-  totalNumberOfEmp: number = 0;
-  totalNumOfFemaleEmp: number = 0;
-  totalNumOfMaleEmp: number = 0;
-  totalNumOfFreshers: number = 0;
-  totalNoOfRatedEmp: number = 0;
-  totalNoOfMaleRatedEmp: number = 0;
-  totalNoOfFemaleRatedEmp: number = 0;
-  totalNoOfL1Emp: number = 0;
-  totalNoOfL2Emp: number = 0;
-  totalNoOfL3Emp: number = 0;
+  totalNumberOfEmp: number;
+  totalNumOfFemaleEmp: number;
+  totalNumOfMaleEmp: number;
+  totalNumOfFreshers: number;
+  totalNoOfRatedEmp: number;
+  totalNoOfMaleRatedEmp: number;
+  totalNoOfFemaleRatedEmp: number;
+  totalNoOfL1Emp: number;
+  totalNoOfL2Emp: number;
+  totalNoOfL3Emp: number;
 
-  percOfL1Emp: number = 0;
-  percOfL2Emp: number = 0;
-  percOfL3Emp: number = 0;
-  percOfFemaleEmp: number = 0;
-  percOfMaleEmp: number = 0;
-  percOfFreshers: number = 0;
-  percOfMaleRatedEmp: number = 0;
-  percOfFemaleRatedEmp: number = 0;
-  skillMap: Map<string, number> = new Map();
+  percOfL1Emp: number;
+  percOfL2Emp: number;
+  percOfL3Emp: number;
+  percOfFemaleEmp: number;
+  percOfMaleEmp: number;
+  percOfFreshers: number;
+  percOfMaleRatedEmp: number;
+  percOfFemaleRatedEmp: number;
+  skillMap: Map<string, number>;
+  skillSummarylist: GraphContent[];
+  totalSkillLevel: number;
   constructor(private employeeService: EmployeeService,
     private route: Router,
-    private cdRef: ChangeDetectorRef) { }
+    private cdRef: ChangeDetectorRef) {
 
-  ngAfterViewChecked() {
-    this.cdRef.detectChanges();
   }
+
+  //ngAfterViewChecked() {
+  //  this.cdRef.detectChanges();
+  //}
   ngOnInit() {
     this.employeeService.getAllEmployees().subscribe(
       employees => this.employeeList = employees,
@@ -57,60 +63,117 @@ export class DashboardComponent implements OnInit {
 
       },
       () => {
-        this.getDashboardValues();
+        this.getDashboardValues()
       }
     );
+
   }
 
   getDashboardValues() {
     this.totalNumberOfEmp = this.employeeList.length;
-    this.employeeList.forEach(employee => {
+    this.skillMap = new Map();
+    this.totalSkillLevel = 0;
+    this.totalNumOfFemaleEmp = 0;
+    this.totalNumOfMaleEmp = 0;
+    this.totalNumOfFreshers = 0;
+    this.totalNoOfRatedEmp = 0;
+    this.totalNoOfMaleRatedEmp = 0;
+    this.totalNoOfFemaleRatedEmp = 0;
+    this.totalNoOfL1Emp = 0;
+    this.totalNoOfL2Emp = 0;
+    this.totalNoOfL3Emp = 0;
 
-      if (employee.level1) {
-        this.totalNoOfL1Emp++;
-        this.totalNumOfFreshers++;
-      } else if (employee.level2) {
-        this.totalNoOfL2Emp++;
+    this.percOfL1Emp = 0;
+    this.percOfL2Emp = 0;
+    this.percOfL3Emp = 0;
+    this.percOfFemaleEmp = 0;
+    this.percOfMaleEmp = 0;
+    this.percOfFreshers = 0;
+    this.percOfMaleRatedEmp = 0;
+    this.percOfFemaleRatedEmp = 0;
+
+    if (this.totalNumberOfEmp > 0) {
+      this.employeeList.forEach(employee => {
+
+        if (employee.level1) {
+          this.totalNoOfL1Emp++;
+          this.totalNumOfFreshers++;
+        } else if (employee.level2) {
+          this.totalNoOfL2Emp++;
+          if (employee.gender == "Male") {
+            this.totalNoOfMaleRatedEmp++
+          } else {
+            this.totalNoOfFemaleRatedEmp++;
+          }
+        } else {
+          this.totalNoOfL3Emp++;
+          if (employee.gender == "Male") {
+            this.totalNoOfMaleRatedEmp++
+          } else {
+            this.totalNoOfFemaleRatedEmp++;
+          }
+        }
+
         if (employee.gender == "Male") {
-          this.totalNoOfMaleRatedEmp++
+          this.totalNumOfMaleEmp++;
         } else {
-          this.totalNoOfFemaleRatedEmp++;
+          this.totalNumOfFemaleEmp++;
         }
-      } else {
-        this.totalNoOfL3Emp++;
-        if (employee.gender == "Male") {
-          this.totalNoOfMaleRatedEmp++
-        } else {
-          this.totalNoOfFemaleRatedEmp++;
+        employee.skills.sort((a: Skill, b: Skill) => b.skillLevel - a.skillLevel);
+        let strongSkillText = "";
+        employee.skills.forEach((skill, index) => {
+          if (index < 4) {
+            strongSkillText = strongSkillText + skill.skillName + ',';
+          } else if (index == 4) {
+            strongSkillText = strongSkillText + skill.skillName;
+          }
+          if (this.skillMap.has(skill.skillName)) {
+            let skillValue = skill.skillLevel + this.skillMap.get(skill.skillName);
+            this.skillMap.set(skill.skillName, skillValue);
+          } else {
+            this.skillMap.set(skill.skillName, skill.skillLevel);
+          }
+          this.totalSkillLevel = this.totalSkillLevel + skill.skillLevel;
         }
-      }
+        );
+        employee.strongSkills = strongSkillText;
+      });
 
-      if (employee.gender == "Male") {
-        this.totalNumOfMaleEmp++;
-      } else {
-        this.totalNumOfFemaleEmp++;
+      this.skillSummarylist = [];
+      this.skillMap.forEach((value: number, key: string) => {
+        let graphData: GraphContent = new GraphContent();
+        graphData.skillName = key;
+        graphData.skillPerc = value * 100 / this.totalSkillLevel;
+        graphData.colour = this.getRandomColor(this.skillSummarylist.length);
+        this.skillSummarylist.push(graphData);
       }
-      employee.skills.forEach(skill => {
-        if (this.skillMap.has(skill.skillName)) {
-          let skillValue = skill.skillLevel + this.skillMap.get(skill.skillName);
-          this.skillMap.set(skill.skillName, skillValue);
-        } else {
-          this.skillMap.set(skill.skillName, skill.skillLevel);
-        }
-      }
-
       );
-    });
-    this.totalNoOfRatedEmp = this.totalNoOfMaleRatedEmp + this.totalNoOfFemaleRatedEmp;
-    this.percOfL1Emp = Math.round(this.totalNoOfL1Emp / this.totalNumberOfEmp);
-    this.percOfL2Emp = Math.round(this.totalNoOfL2Emp / this.totalNumberOfEmp);
-    this.percOfL3Emp = Math.round(this.totalNoOfL3Emp / this.totalNumberOfEmp);
 
-    this.percOfFemaleEmp = Math.round(this.totalNumOfFemaleEmp / this.totalNumberOfEmp);
-    this.percOfMaleEmp = Math.round(this.totalNumOfMaleEmp / this.totalNumberOfEmp);
-    this.percOfFemaleRatedEmp = Math.round(this.totalNoOfFemaleRatedEmp / this.totalNoOfRatedEmp);
-    this.percOfMaleRatedEmp = Math.round(this.totalNoOfMaleRatedEmp / this.totalNoOfRatedEmp);
-    this.percOfFreshers = Math.round(this.totalNumOfFreshers / this.totalNumberOfEmp);
+      this.totalNoOfRatedEmp = this.totalNoOfMaleRatedEmp + this.totalNoOfFemaleRatedEmp;
+      this.percOfL1Emp = this.round(this.totalNoOfL1Emp / this.totalNumberOfEmp) * 100;
+      this.percOfL2Emp = this.round(this.totalNoOfL2Emp / this.totalNumberOfEmp) * 100;
+      this.percOfL3Emp = this.round(this.totalNoOfL3Emp / this.totalNumberOfEmp) * 100;
+
+      this.percOfFemaleEmp = this.round(this.totalNumOfFemaleEmp / this.totalNumberOfEmp) * 100;
+      this.percOfMaleEmp = this.round(this.totalNumOfMaleEmp / this.totalNumberOfEmp) * 100;
+      this.percOfFemaleRatedEmp = this.round(this.totalNoOfFemaleRatedEmp / this.totalNoOfRatedEmp) * 100;
+      this.percOfMaleRatedEmp = this.round(this.totalNoOfMaleRatedEmp / this.totalNoOfRatedEmp) * 100;
+      this.percOfFreshers = this.round(this.totalNumOfFreshers / this.totalNumberOfEmp) * 100;
+
+      if (this.skillSummarylist == undefined || this.skillSummarylist.length == 0) {
+        this.setDumyGraph();
+      }
+    } else {
+      this.setDumyGraph();
+    }
+  }
+
+  setDumyGraph() {
+    this.skillSummarylist = [];
+    let graphData: GraphContent = new GraphContent();
+    graphData.skillPerc = 100;
+    graphData.colour = "lavender";
+    this.skillSummarylist.push(graphData);
   }
 
   delete(employee: AssociateDetails) {
@@ -121,9 +184,26 @@ export class DashboardComponent implements OnInit {
       },
       error => ({}),
       () => {
-        this.route.navigate(["/"])
       }
     )
+  }
+
+  getRandomColor(length: number) {
+    let initialColours: string[] = ['#4fa73391', '#59c4e491', '#e68a00', '#fccdbe', '#33adff', '#b3a3da', '#ff66d9', '#00e6e6', '#a64dff', '#009999'];
+    if (length < 10) {
+      return initialColours[length];
+    } else {
+      let letters = 'BCDEF'.split('');
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * letters.length)];
+      }
+      return color;
+    }
+  }
+
+  round(value: number) {
+    return Number(Math.round(+(value + 'e2')) + 'e-2');
   }
 
 }

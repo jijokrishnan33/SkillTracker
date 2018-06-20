@@ -24,7 +24,8 @@ export class AssociateDetails {
 	public communicactionLevel: number=0;
 	public logicLevel: number=0;
 	public aptitudeLevel: number=0;
-	public confidenceLevel: number=0;
+    public confidenceLevel: number=0;
+    public strongSkills: string;
 
 
 

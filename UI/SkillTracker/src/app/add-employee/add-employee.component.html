@@ -147,14 +147,16 @@
             </span>
           </div>
         </div>
-
-        <div class="row">
+        <div class="row" *ngIf="!employee?.skills?.length>0">
+          <div class="col-sm-4 error">Please add skills from add skills page!</div>
+        </div>
+        <div class="row" *ngIf="employee?.skills?.length>0">
           <div class="col-sm-4" *ngFor="let skill of employee.skills">
             <div class="row">
-              <div class="col-sm-3">
+              <div class="col-sm-4">
                 <label>{{skill.skillName}}</label>
               </div>
-              <div class="col-sm-9">
+              <div class="col-sm-8">
                 <input type="range" min="0" max="20" value="{{skill.skillLevel}}" class="slider" id="myRange" (input)="sliderChnage($event.target.value,skill)"> {{skill.skillLevel}}
               </div>
             </div>
@@ -166,30 +168,30 @@
         <div class="row">
           <div class="col-sm-4">
             <div class="row">
-              <div class="col-sm-3">
+              <div class="col-sm-4">
                 <label>Spoken</label>
               </div>
-              <div class="col-sm-9">
+              <div class="col-sm-8">
                 <input type="range" min="0" max="20" value="{{employee.spokenLevel}}" class="slider" id="myRange" [(ngModel)]="employee.spokenLevel"> {{employee.spokenLevel}}
               </div>
             </div>
           </div>
           <div class="col-sm-4">
             <div class="row">
-              <div class="col-sm-3">
+              <div class="col-sm-4">
                 <label>Communication</label>
               </div>
-              <div class="col-sm-9">
+              <div class="col-sm-8">
                 <input type="range" min="0" max="20" value="{{employee.communicactionLevel}}" class="slider" id="myRange" [(ngModel)]="employee.communicactionLevel"> {{employee.communicactionLevel}}
               </div>
             </div>
           </div>
           <div class="col-sm-4">
             <div class="row">
-              <div class="col-sm-3">
+              <div class="col-sm-4">
                 <label>Logic</label>
               </div>
-              <div class="col-sm-9">
+              <div class="col-sm-8">
                 <input type="range" min="0" max="20" value="{{employee.logicLevel}}" class="slider" id="myRange" [(ngModel)]="employee.logicLevel"> {{employee.logicLevel}}
               </div>
             </div>
@@ -198,20 +200,20 @@
         <div class="row">
           <div class="col-sm-4">
             <div class="row">
-              <div class="col-sm-3">
+              <div class="col-sm-4">
                 <label>Aptitude</label>
               </div>
-              <div class="col-sm-9">
+              <div class="col-sm-8">
                 <input type="range" min="0" max="20" value="{{employee.aptitudeLevel}}" class="slider" id="myRange" [(ngModel)]="employee.aptitudeLevel"> {{employee.aptitudeLevel}}
               </div>
             </div>
           </div>
           <div class="col-sm-4">
             <div class="row">
-              <div class="col-sm-3">
+              <div class="col-sm-4">
                 <label>Confidence</label>
               </div>
-              <div class="col-sm-9">
+              <div class="col-sm-8">
                 <input type="range" min="0" max="20" value="{{employee.confidenceLevel}}" class="slider" id="myRange" [(ngModel)]="employee.confidenceLevel"> {{employee.confidenceLevel}}
               </div>
             </div>
@@ -247,7 +249,7 @@
   </div>
 
   <div class="inputRow">
-    <button type="button" class="btn btn-success" (click)="addEmployee()" [disabled]="associateid.invalid || name.invalid || mail.invalid || phone.invalid ">Save</button>
+    <button type="button" class="btn btn-success" (click)="addEmployee()" [disabled]="associateid.invalid || name.invalid || mail.invalid || phone.invalid || !employee?.skills?.length>0">Save</button>
     <button type="button" class="btn btn-danger" [routerLink]="['']">Cancel</button>
   </div>
 </div>

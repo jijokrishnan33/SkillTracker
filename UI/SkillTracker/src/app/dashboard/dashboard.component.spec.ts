@@ -35,7 +35,7 @@ describe('DashboardComponent', () => {
     expect(component).toBeTruthy();
   });
   it('should delete employee', () => {
-    let employee: AssociateDetails = {"associateId":16516,"name":"sdas","email":"jijokrishnan33@gmail.com","mobile":"4564645645","gender":"Male","pic":"","statusGreen":false,"statusBlue":true,"statusRed":false,"level1":false,"level2":true,"level3":false,"remark":"asda","spokenLevel":9,"communicactionLevel":10,"logicLevel":8,"aptitudeLevel":18,"confidenceLevel":10,"strength":"asda","weakness":"sdasd","skills":[{ "skillId": 238, "skillName": "HTML" ,"skillLevel":10}]};
+    let employee: AssociateDetails = {"associateId":16516,"name":"sdas","email":"jijokrishnan33@gmail.com","mobile":"4564645645","gender":"Male","pic":"","statusGreen":false,"statusBlue":true,"statusRed":false,"level1":false,"level2":true,"level3":false,"remark":"asda","spokenLevel":9,"communicactionLevel":10,"logicLevel":8,"aptitudeLevel":18,"confidenceLevel":10,"strength":"asda","weakness":"sdasd","skills":[{ "skillId": 238, "skillName": "HTML" ,"skillLevel":10}],"strongSkills":""};
     component.delete(employee);
     expect(component).toBeTruthy();
   });
