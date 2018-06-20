@@ -82,13 +82,13 @@ public class AssociateServiceImpl implements AssociateService {
 	}
 
 	@Override
-	@CacheEvict(cacheNames="associates",allEntries = true)
-	public ResponseEntity<Response> saveAssociate(MultipartFile file,String associateDetailString) {
+	@CacheEvict(cacheNames = "associates", allEntries = true)
+	public ResponseEntity<Response> saveAssociate(MultipartFile file, String associateDetailString) {
 		AssociateTable associateTable = new AssociateTable();
-		
+
 		try {
 			if (!StringUtils.isEmpty(associateDetailString)) {
-				
+
 				AssociateDetails associateDetails = new ObjectMapper().readValue(associateDetailString,
 						AssociateDetails.class);
 
@@ -113,15 +113,17 @@ public class AssociateServiceImpl implements AssociateService {
 				associateTable.setLogicLevel(associateDetails.getLogicLevel());
 				associateTable.setSpokenLevel(associateDetails.getSpokenLevel());
 				Set<AssociateSkillsTable> associateSkillsTableList = new HashSet<AssociateSkillsTable>();
-				for (Skill skill : associateDetails.getSkills()) {
-					SkillsTable skillTable = new SkillsTable();
-					skillTable.setSkillId(skill.getSkillId());
-					skillTable.setSkillName(skill.getSkillName());
-					AssociateSkillsTable associateSkillsTable = new AssociateSkillsTable();
-					associateSkillsTable.setAssociates(associateTable);
-					associateSkillsTable.setSkills(skillTable);
-					associateSkillsTable.setSkillLevel(skill.getSkillLevel());
-					associateSkillsTableList.add(associateSkillsTable);
+				if (associateDetails.getSkills() != null) {
+					for (Skill skill : associateDetails.getSkills()) {
+						SkillsTable skillTable = new SkillsTable();
+						skillTable.setSkillId(skill.getSkillId());
+						skillTable.setSkillName(skill.getSkillName());
+						AssociateSkillsTable associateSkillsTable = new AssociateSkillsTable();
+						associateSkillsTable.setAssociates(associateTable);
+						associateSkillsTable.setSkills(skillTable);
+						associateSkillsTable.setSkillLevel(skill.getSkillLevel());
+						associateSkillsTableList.add(associateSkillsTable);
+					}
 				}
 				associateTable.setAssociateSkills(associateSkillsTableList);
 				repository.save(associateTable);
@@ -135,12 +137,12 @@ public class AssociateServiceImpl implements AssociateService {
 	}
 
 	@Override
-	@Cacheable(value="associates",key="#id" )
+	@Cacheable(value = "associates", key = "#id")
 	public ResponseEntity<AssociateDetails> getAssociateById(String id) {
 		AssociateDetails details = new AssociateDetails();
 		try {
 			if (id != null) {
-				int idNum=Integer.parseInt(id);
+				int idNum = Integer.parseInt(id);
 				AssociateTable associateTable = repository.findById(idNum).get();
 
 				details.setAssociateId(associateTable.getAssociateId());
@@ -182,7 +184,7 @@ public class AssociateServiceImpl implements AssociateService {
 	}
 
 	@Override
-	@CacheEvict(cacheNames="associates",allEntries = true)
+	@CacheEvict(cacheNames = "associates", allEntries = true)
 	public ResponseEntity<Response> deleteAssociate(AssociateDetails associateDetails) {
 		AssociateTable associateTable = new AssociateTable();
 		try {
@@ -228,5 +230,5 @@ public class AssociateServiceImpl implements AssociateService {
 			return new ResponseEntity<Response>(new Response("Failed"), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+
 }

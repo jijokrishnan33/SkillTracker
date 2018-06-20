@@ -45,7 +45,7 @@ public class SkillServiceImpl implements SkillService {
 	}
 
 	@Override
-	@CacheEvict(cacheNames="skills",allEntries = true)
+	@CacheEvict(cacheNames= {"skills","associates"},allEntries = true)
 	public ResponseEntity<Response> saveSkill(Skill skill) {
 		SkillsTable skillTable = new SkillsTable();
 		try {
@@ -63,7 +63,7 @@ public class SkillServiceImpl implements SkillService {
 	}
 
 	@Override
-	@CacheEvict(cacheNames="skills",allEntries = true)
+	@CacheEvict(cacheNames= {"skills","associates"},allEntries = true)
 	public ResponseEntity<Response> deleteSkill(Skill skill) {
 		SkillsTable skillTable = new SkillsTable();
 		try {
