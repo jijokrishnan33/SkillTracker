@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,7 @@ public class SkillServiceImpl implements SkillService {
 	SkillRepository repository;
 
 	@Override
+	@Cacheable("skills")
 	public ResponseEntity<List<Skill>> getAllSkills() {
 		List<Skill> skillList = new ArrayList<>();
 		try {
@@ -42,6 +45,7 @@ public class SkillServiceImpl implements SkillService {
 	}
 
 	@Override
+	@CacheEvict(cacheNames="skills",allEntries = true)
 	public ResponseEntity<Response> saveSkill(Skill skill) {
 		SkillsTable skillTable = new SkillsTable();
 		try {
@@ -59,6 +63,7 @@ public class SkillServiceImpl implements SkillService {
 	}
 
 	@Override
+	@CacheEvict(cacheNames="skills",allEntries = true)
 	public ResponseEntity<Response> deleteSkill(Skill skill) {
 		SkillsTable skillTable = new SkillsTable();
 		try {

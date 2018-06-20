@@ -116,6 +116,7 @@ public class AssociateServiceImplTest {
 		ResponseEntity<Response> response=service.saveAssociate(file, associateDetailString);
 		assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
 	}
+	
 	@Test
 	public void testGetAssociateById() {
 		Mockito.when(repository.findById(Mockito.anyInt())).thenReturn(Optional.of(table));

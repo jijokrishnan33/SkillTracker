@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -30,6 +32,7 @@ public class AssociateServiceImpl implements AssociateService {
 	AssociateRepository repository;
 
 	@Override
+	@Cacheable("associates")
 	public ResponseEntity<List<AssociateDetails>> getAllAssociates() {
 		List<AssociateDetails> associateList = new ArrayList<>();
 		try {
@@ -79,6 +82,7 @@ public class AssociateServiceImpl implements AssociateService {
 	}
 
 	@Override
+	@CacheEvict(cacheNames="associates",allEntries = true)
 	public ResponseEntity<Response> saveAssociate(MultipartFile file,String associateDetailString) {
 		AssociateTable associateTable = new AssociateTable();
 		
@@ -131,6 +135,7 @@ public class AssociateServiceImpl implements AssociateService {
 	}
 
 	@Override
+	@Cacheable(value="associates",key="#id" )
 	public ResponseEntity<AssociateDetails> getAssociateById(String id) {
 		AssociateDetails details = new AssociateDetails();
 		try {
@@ -177,6 +182,7 @@ public class AssociateServiceImpl implements AssociateService {
 	}
 
 	@Override
+	@CacheEvict(cacheNames="associates",allEntries = true)
 	public ResponseEntity<Response> deleteAssociate(AssociateDetails associateDetails) {
 		AssociateTable associateTable = new AssociateTable();
 		try {
