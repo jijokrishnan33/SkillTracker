@@ -40,7 +40,6 @@ export class EmployeeService {
       .catch(this.handleErrorObservable);
   }
   private extractData(res: Response) {
-    console.log(res);
     let body = res.json();
     return body || {};
   }
